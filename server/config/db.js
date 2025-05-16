@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import "dotenv/config";
-import e from "express";
+console.log(process.env.mongoURL);
 
 async function connection() {
   try {

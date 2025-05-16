@@ -1,15 +1,16 @@
 import PostMessage from "../Models/Post.model.js"
 
-export const getPosts  = async (req,res)=>{
-    try {
-        const allPosts = await PostMessage.find()
-        console.log('allPosts: ', allPosts);
-        res.status(200).json(allPosts)
-    } catch (error) {
-        res.status(404).json({msg:error.message})
-        console.log("Error while fetching all the posts")
-    }
-}
+export const getPosts = async (req, res) => {
+  try {
+    const allPosts = await PostMessage.find();
+    console.log('Fetched Posts:', allPosts.length);
+    res.status(200).json(allPosts);
+  } catch (error) {
+    console.error('Error while fetching posts:', error);
+    res.status(500).json({ msg: error.message });
+  }
+};
+
 
 
 export const createPost = async (req,res)=>{
