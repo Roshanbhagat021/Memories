@@ -1,7 +1,7 @@
 import React, { useState } from "react";
  import axios from 'axios'; 
 
-const Form = () => {
+const Form = ({setChangeHappended}) => {
   const [formValues, setformValues] = useState({
     creator: "",
     title: "",
@@ -25,7 +25,6 @@ const Form = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file)
-    if (!file) return;
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -61,6 +60,7 @@ const handleSubmit = async (e) => {
     await axios.post("http://localhost:8080/posts", memoryData);
 
     resetForm();
+    setChangeHappended((prev)=>!prev)
   } catch (error) {
     console.error("Error submitting form:", error);
   }finally{
